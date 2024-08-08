@@ -1,0 +1,23 @@
+{
+  "processosAbertos": [
+    {
+      "processos": [
+        {
+          "titulo": "NOVO VESTIBdssULAR 2025/UFGD",
+          "descricao": "Atualização do Processo Seletivo Vestibular UFGD 2025",
+          "periodo": "01/08/2024 a 15/09/2024",
+          "url": "https://portal.ufgd.edu.br/vestibular/novo-processo-seletivo",
+          "edital": "https://files.ufgd.edu.br/arquivos/arquivos/78/NOVO_EDITAL.pdf"
+        },
+        {
+          "titulo": "VESTIBULAR dsdsLETRAS-LIBRAS LicEaD 2025/UFGD",
+          "descricao": "Atualização do Processo Seletivo Vestibular Letras Libras Licenciatura 2025",
+          "periodo": "01/08/2024 a 15/09/2024",
+          "url": "https://portal.ufgd.edu.br/vestibular/novo-processo-seletivo-letras-libras",
+          "edital": "https://files.ufgd.edu.br/arquivos/arquivos/78/NOVO_EDITAL_LETRAS_LIBRAS.pdf"
+        }
+      ],
+      "id": 1
+    }
+  ]
+}
