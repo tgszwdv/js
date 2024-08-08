@@ -22,6 +22,7 @@ server.get('/scrape', async (req, res) => {
         await scrape(); // Chama a função de scraping
         res.send('Scraping concluído com sucesso!');
     } catch (error) {
+        console.error('Erro ao executar o scraping:', error);
         res.status(500).send('Erro ao executar o scraping.');
     }
 });
