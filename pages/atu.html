@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Processos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+    <script>
+        async function carregarTabela() {
+            try {
+                const response = await fetch('https://jsonserver-khaki.vercel.app/processosAbertos/1');
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
+                const dados = await response.json();
+                atualizarTabela(dados.processos);
+                alert('Tabela carregada com sucesso!');
+            } catch (error) {
+                document.getElementById('resultado').textContent = 'Erro ao carregar os dados.';
+                alert('Falha ao carregar a tabela: ' + error.message);
+            }
+        }
 
+        function atualizarTabela(processos) {
+            const tabela = document.getElementById('tabela');
+            tabela.innerHTML = ''; // Limpar a tabela antes de atualizar
+
+            if (processos.length === 0) {
+                tabela.innerHTML = '<tr><td colspan="5">Nenhum dado encontrado.</td></tr>';
+                return;
+            }
+
+            // Cabeçalho da tabela
+            tabela.innerHTML = `
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Período</th>
+                    <th>URL</th>
+                </tr>
+            `;
+
+            // Linhas da tabela
+            processos.forEach(processo => {
+                tabela.innerHTML += `
+                    <tr>
+                        <td>${processo.titulo}</td>
+                        <td>${processo.descricao}</td>
+                        <td>${processo.periodo}</td>
+                        <td><a href="${processo.url}" target="_blank">Link</a></td>
+                    </tr>
+                `;
+            });
+        }
+
+        async function atualizarProcessos() {
+            try {
+                const response = await fetch('/scrape');
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
+                const result = await response.text();
+                document.getElementById('resultado').textContent = result;
+
+                // Recarregar a tabela após o scraping
+                carregarTabela();
+                alert('Processos atualizados com sucesso!');
+            } catch (error) {
+                document.getElementById('resultado').textContent = 'Erro ao atualizar os processos.';
+                alert('Falha ao atualizar os processos: ' + error.message);
+            }
+        }
+
+        // Carregar a tabela ao iniciar a página
+        window.onload = carregarTabela;
+    </script>
+</head>
+<body>
+    <h1>Atualizar Processos Seletivos</h1>
+    <button onclick="atualizarProcessos()">Atualizar Processos</button>
+    <p id="resultado"></p>
+    <table id="tabela">
+        <!-- Tabela será preenchida aqui -->
+    </table>
+</body>
+</html>
