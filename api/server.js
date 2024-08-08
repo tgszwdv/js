@@ -2,7 +2,6 @@ const jsonServer = require('json-server');
 const path = require('path');
 const express = require('express');
 const scrape = require('./scraping'); // Importar a função de scraping
-
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
@@ -22,7 +21,6 @@ server.get('/scrape', async (req, res) => {
         await scrape(); // Chama a função de scraping
         res.send('Scraping concluído com sucesso!');
     } catch (error) {
-        console.error('Erro ao executar o scraping:', error);
         res.status(500).send('Erro ao executar o scraping.');
     }
 });
