@@ -20,7 +20,7 @@
     <script>
         async function carregarTabela() {
             try {
-                const response = await fetch('http://localhost:3000/processosAbertos/1');
+                const response = await fetch('https://js-one.vercel.app/processosAbertos/1');
                 if (!response.ok) {
                     throw new Error('Erro na resposta da rede');
                 }
