@@ -40,7 +40,7 @@ async function scrape() {
   console.log('Dados extraídos do scraping:', JSON.stringify({ processos: processos }, null, 2));
 
   try {
-    await axios.put('https://jsonserver-khaki.vercel.app/processosAbertos/1', { processos: processos });
+    await axios.put('http://localhost:3000/processosAbertos/1', { processos: processos });
     console.log('Dados atualizados com sucesso!');
   } catch (error) {
     console.error('Erro ao atualizar os dados na API:', error);
